@@ -26,64 +26,177 @@ var welcomePage = document.getElementById("welcome");
 var questionPage = document.getElementById("questions");
 var resultPage = document.getElementById("yourScore");
 var highScores = document.querySelector("h3");
-var timer = document.getElementById("countdown-timer");
+var timerDiv = document.getElementById("countdown-timer");
 var startBtn = document.getElementById("start");
 var cards = document.getElementsByClassName("card");
-var timer;
+var choice = document.querySelectorAll("input[type='radio'");
 var timeLeft;
+
+var h2El = document.createElement("h2");
+var btnEl1 = document.createElement("button");
+var btnEl2 = document.createElement("button");
+var btnEl3 = document.createElement("button");
+var btnEl4 = document.createElement("button");
+var h3El = document.createElement("h3");
+var i = 1;
+
 var questions = [
     {
-        question: "Question1 content",
+        question: "Question 1 content",
         choices: ["option 1", "option 2", "option 3", "option 4"],
         answer: "option 1",
     },
     {
-        question: "Question2 content",
-        choices: ["option 1", "option 2", "option 3", "option 4"],
-        answer: "option 1",
+        question: "Question 2 content",
+        choices: ["2option 1", "2option 2", "2option 3", "2option 4"],
+        answer: "2option 1",
     },
     {
-        question: "Question3 content",
-        choices: ["option 1", "option 2", "option 3", "option 4"],
-        answer: "option 1",
+        question: "Question 3 content",
+        choices: ["3option 1", "3option 2", "3option 3", "3option 4"],
+        answer: "3option 1",
     },
     {
-        question: "Question4 content",
-        choices: ["option 1", "option 2", "option 3", "option 4"],
-        answer: "option 1",
+        question: "Question 4 content",
+        choices: ["4option 1", "4option 2", "4option 3", "4option 4"],
+        answer: "4option 1",
     },
     {
-        question: "Question5 content",
-        choices: ["option 1", "option 2", "option 3", "option 4"],
-        answer: "option 1",
+        question: "Question 5 content",
+        choices: ["5option 1", "5option 2", "5option 3", "5option 4"],
+        answer: "5option 1",
     },
 ];
 
-// The startCountdown function starts the countdown timer. It will start counting down seconds when the button click calls the function.
-function startCountdown() {
-  timer = setInterval(function() {
-    timeLeft--;
-    timer.textContent = timeLeft;
+// Sets start time at 75 seconds, calls displayQuestions function.
+function startQuiz() {
+    welcomePage.setAttribute("style", "visibility: hidden");
+    displayQuestions();
+    timeLeft = 75;
+}
+
+function displayQuestions() {
+    document.body.children[1].appendChild(h2El);
+    document.body.children[1].appendChild(btnEl1);
+    document.body.children[1].appendChild(btnEl2);
+    document.body.children[1].appendChild(btnEl3);
+    document.body.children[1].appendChild(btnEl4);
+
+    h2El.textContent = questions[0].question;
+    btnEl1.textContent = questions[0].choices[0];
+    btnEl2.textContent = questions[0].choices[1];
+    btnEl3.textContent = questions[0].choices[2];
+    btnEl4.textContent = questions[0].choices[3];
+}
+btnEl1.addEventListener("click", function() {
+    if (i < 5) {
+    h2El.textContent = questions[i].question;
+    btnEl1.textContent = questions[i].choices[0];
+    btnEl2.textContent = questions[i].choices[1];
+    btnEl3.textContent = questions[i].choices[2];
+    btnEl4.textContent = questions[i].choices[3];
+    i++;
+    document.body.children[1].appendChild(h3El);
+    } else {
+        clearInterval();
+        displayScore();
+    }
+    
+    if (questions[i].choices[0] === questions[i].answer) {
+        h3El.textContent = "Correct!"
+    } else {
+        h3El.textContent = "Sorry, that was incorrect."
+        timeLeft -= 15;
+    }
+});
+
+btnEl2.addEventListener("click", function() {
+    if (i < 5) {
+    h2El.textContent = questions[i].question;
+    btnEl1.textContent = questions[i].choices[0];
+    btnEl2.textContent = questions[i].choices[1];
+    btnEl3.textContent = questions[i].choices[2];
+    btnEl4.textContent = questions[i].choices[3];
+    i++;
+    document.body.children[1].appendChild(h3El);
+    } else {
+        clearInterval();
+        displayScore();
+    }
+    
+    if (questions[i].choices[1] === questions[i].answer) {
+        h3El.textContent = "Correct!"
+    } else {
+        h3El.textContent = "Sorry, that was incorrect."
+        timeLeft -= 15;
+    }
+});
+
+btnEl3.addEventListener("click", function() {
+    if (i < 5) {
+    h2El.textContent = questions[i].question;
+    btnEl1.textContent = questions[i].choices[0];
+    btnEl2.textContent = questions[i].choices[1];
+    btnEl3.textContent = questions[i].choices[2];
+    btnEl4.textContent = questions[i].choices[3];
+    i++;
+    document.body.children[1].appendChild(h3El);
+    } else {
+        clearInterval();
+        displayScore();
+    }
+    
+    if (questions[i].choices[2] === questions[i].answer) {
+        h3El.textContent = "Correct!"
+    } else {
+        h3El.textContent = "Sorry, that was incorrect."
+        timeLeft -= 15;
+    }
+});
+
+btnEl4.addEventListener("click", function() {
+    if (i < 5) {
+    h2El.textContent = questions[i].question;
+    btnEl1.textContent = questions[i].choices[0];
+    btnEl2.textContent = questions[i].choices[1];
+    btnEl3.textContent = questions[i].choices[2];
+    btnEl4.textContent = questions[i].choices[3];
+    i++;
+    document.body.children[1].appendChild(h3El);
+    } else {
+        clearInterval();
+        displayScore();
+    }
+    
+    if (questions[i].choices[3] === questions[i].answer) {
+        h3El.textContent = "Correct!"
+    } else {
+        h3El.textContent = "Sorry, that was incorrect."
+        timeLeft -= 15;
+    }
+});
+
+function displayScore() {
+
+}
+
+//Starts the countdown timer on click
+startBtn.addEventListener("click", function() {
+    startQuiz();
+    var timer = setInterval(function() {  
+    //Tests if time is still left
     if (timeLeft > 0) {
-        //Stops countdown
-        clearInterval(timer);
+        timeLeft--;
+        timerDiv.textContent = timeLeft;
     }
     // Tests if time has run out
     if (timeLeft === 0) {
-      // Stops countdown
-      clearInterval(timer);
-    //   loseGame();
-    }
-  }, 1000);
-}
-
-function startQuiz() {
-
-}
-
-startBtn.addEventListener("click", function(event) {
-    console.log(event);
-    startCountdown();
-    startQuiz();
+    // Stops countdown
+        alert("time's up");
+        clearInterval(timer);
+    }}, 1000);
 });
 
+// choice.addEventListener("click", function() {
+//     changeCard();
+// });
