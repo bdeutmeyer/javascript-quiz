@@ -25,20 +25,41 @@ THEN I can save my initials and my score */
 var welcomePage = document.getElementById("welcome");
 var questionPage = document.getElementById("questions");
 var resultPage = document.getElementById("yourScore");
-var highScores = document.querySelector("h3");
+var highScores = document.querySelector("p");
 var timerDiv = document.getElementById("countdown-timer");
 var startBtn = document.getElementById("start");
+var takeAgainBtn = document.getElementById("takeAgain");
 var cards = document.getElementsByClassName("card");
 var choice = document.querySelectorAll("input[type='radio'");
 var timeLeft;
-
+var score;
 var h2El = document.createElement("h2");
 var btnEl1 = document.createElement("button");
 var btnEl2 = document.createElement("button");
 var btnEl3 = document.createElement("button");
 var btnEl4 = document.createElement("button");
 var h3El = document.createElement("h3");
+
+h2El.setAttribute("style", "padding-bottom: 40px; margin-left: 50px");
+btnEl1.setAttribute("style", "background-color: #235659; color: white; font-size: 125%; font-family: inherit; padding: 20px auto; border-width: 3px; width: 40%; margin-left: 50px; margin-bottom: 40px; line-height: 2");
+btnEl2.setAttribute("style", "background-color: #235659; color: white; font-size: 125%; font-family: inherit; padding: 20px auto; border-width: 3px; width: 40%; margin-left: 50px; margin-bottom: 40px; line-height: 2");
+btnEl3.setAttribute("style", "background-color: #235659; color: white; font-size: 125%; font-family: inherit; padding: 20px auto; border-width: 3px; width: 40%; margin-left: 50px; margin-bottom: 40px; line-height: 2");
+btnEl4.setAttribute("style", "background-color: #235659; color: white; font-size: 125%; font-family: inherit; padding: 20px auto; border-width: 3px; width: 40%; margin-left: 50px; margin-bottom: 40px; line-height: 2");
+h3El.setAttribute("style", "color: gray; font-size: 125%; font-style: italic")
+
 var i = 1;
+var timer = setInterval(function() {  
+    //Tests if time is still left
+    if (timeLeft > 0) {
+        timeLeft--;
+        timerDiv.textContent = timeLeft;
+    }
+    // Tests if time has run out
+    if (timeLeft === 0) {
+    // Stops countdown
+        alert("time's up");
+        clearInterval(timer);
+    }}, 1000);
 
 var questions = [
     {
@@ -68,6 +89,34 @@ var questions = [
     },
 ];
 
+// var questions = [
+//     {
+//         question: "What is another name for an 'if' statement?",
+//         choices: ["Maybe", "Might", "Conditional", "Could"],
+//         answer: "Conditional",
+//     },
+//     {
+//         question: "What does the modulus ( % ) operator return?",
+//         choices: ["The percentage", "The metric conversion", "The binary", "The remainder"],
+//         answer: "The remainder",
+//     },
+//     {
+//         question: "You should end each line of code with this symbol:",
+//         choices: ["A semicolon ( ; )", "An exclamation point ( ! )", "A comma ( , )", "A dollar sign ( $ )"],
+//         answer: "A semicolon ( ; )",
+//     },
+//     {
+//         question: "What do you call a piece of code that looks like 'nameOfSomething()'?",
+//         choices: ["A variable", "A function", "An array", "An object"],
+//         answer: "A function",
+//     },
+//     {
+//         question: "What gives a dynamic website its functionality?",
+//         choices: ["HTML", "CSS", "Python", "The tears of frustrated developers"],
+//         answer: "The tears of frustrated developers",
+//     },
+// ];
+
 // Sets start time at 75 seconds, calls displayQuestions function.
 function startQuiz() {
     welcomePage.setAttribute("style", "visibility: hidden");
@@ -75,6 +124,7 @@ function startQuiz() {
     timeLeft = 75;
 }
 
+//Appends question elements to page, gives them initial text content
 function displayQuestions() {
     document.body.children[1].appendChild(h2El);
     document.body.children[1].appendChild(btnEl1);
@@ -88,8 +138,24 @@ function displayQuestions() {
     btnEl3.textContent = questions[0].choices[2];
     btnEl4.textContent = questions[0].choices[3];
 }
+
+function displayScore() {
+    clearInterval(timer);
+    // score = timerDiv.textContent;
+    //in API: window-->timerDiv-->childNodes-->0: text-->data OR nodevalue OR textContent OR wholeText (all have same value)
+    // // // document.querySelectorAll("button").setAttribute("style", "visibility: none");
+    // // // h2El.textContent = "You scored " + score + " points! Would you like to add your initials and score to the high scores page?";
+    // console.log(score);
+}
+
+//Starts the countdown timer on click
+startBtn.addEventListener("click", function() {
+    startQuiz();
+});
+
+//Answer buttons. Tests to see if choice was correct or not, displays message accordingly. Increments to next question on click.
 btnEl1.addEventListener("click", function() {
-    if (i < 5) {
+    if (i < 4) {
     h2El.textContent = questions[i].question;
     btnEl1.textContent = questions[i].choices[0];
     btnEl2.textContent = questions[i].choices[1];
@@ -97,9 +163,13 @@ btnEl1.addEventListener("click", function() {
     btnEl4.textContent = questions[i].choices[3];
     i++;
     document.body.children[1].appendChild(h3El);
-    } else {
-        clearInterval();
-        displayScore();
+    }  else if (i = 4) {
+        h2El.textContent = questions[i].question;
+        btnEl1.textContent = questions[i].choices[0];
+        btnEl2.textContent = questions[i].choices[1];
+        btnEl3.textContent = questions[i].choices[2];
+        btnEl4.textContent = questions[i].choices[3];
+        clearInterval(timer);
     }
     
     if (questions[i].choices[0] === questions[i].answer) {
@@ -176,27 +246,7 @@ btnEl4.addEventListener("click", function() {
     }
 });
 
-function displayScore() {
-
-}
-
-//Starts the countdown timer on click
-startBtn.addEventListener("click", function() {
-    startQuiz();
-    var timer = setInterval(function() {  
-    //Tests if time is still left
-    if (timeLeft > 0) {
-        timeLeft--;
-        timerDiv.textContent = timeLeft;
-    }
-    // Tests if time has run out
-    if (timeLeft === 0) {
-    // Stops countdown
-        alert("time's up");
-        clearInterval(timer);
-    }}, 1000);
-});
-
-// choice.addEventListener("click", function() {
-//     changeCard();
+// takeAgainBtn.addEventListener("click", function() {
+//     window.location.href = 
+//     startQuiz();
 // });
