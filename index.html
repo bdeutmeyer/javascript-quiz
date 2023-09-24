@@ -11,19 +11,29 @@
 <body>
     <header>
         <!-- Header with high score page link and countdown timer -->
-            <p>View High Scores</p>
-            <div id="countdown-timer"></div>
+        <a href="./highscores.html">See High Scores</a>
+        <div id="countdown-timer"></div>
     </header>
     <main>
         <!-- Initial page -->
         <section class="card" id="welcome">
             <h2>Welcome! Click the button to start the quiz.</h2>
-            <input type="button" value="Start Quiz" id="start">  
+            <button id="start">Start Quiz</button>
         </section>
         <!-- Questions begin, timer starts -->
-        <section class="card" id="questions"></section>
+        <section class="card" id="questions">
+            <h2 class="quizCard" id="quizh2"></h2>
+            <button class="quizCard quizBtn"  id="answer1"></button>
+            <button class="quizCard quizBtn"  id="answer2"></button>
+            <button class="quizCard quizBtn"  id="answer3"></button>
+            <button class="quizCard quizBtn"  id="answer4"></button>
+        </section>
         <!-- Says your score, asks if you want to see scoreboard -->
-        <section class="card" id="yourScore"></section>
+        <section class="card" id="yourScore">
+            <h2 id="scorePageHeading"></h2>
+            <input type="text" id="initials">
+            <button type="submit" id="addScore">Submit score</button>
+        </section>
     </main>
     <script src="./assets/js/script.js"></script>
 </body>

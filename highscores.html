@@ -9,11 +9,18 @@
 </head>
 <body>
     <main>
-        <h1>High Scores</h1>
-        <section>
-            <input type="button" value="Take the Quiz Again" id="takeAgain">
+        <section id="scoreboard">
+            <h1>High Scores</h1>
+            <!-- List to populate with initials/scores -->
+            <ul id="leaderboard"></ul>
+            <section>
+                <!-- Buttons -->
+                <button class="score-buttons"><a href="./index.html">Take the Quiz Again!</a></button>
+                <button class="score-buttons">Clear Scoreboard</button>
+            </section>
+            
         </section>
     </main>
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/highscorescript.js"></script>
 </body>
 </html>
