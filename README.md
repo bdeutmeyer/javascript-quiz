@@ -14,7 +14,7 @@ https://bdeutmeyer.github.io/javascript-quiz/
 
 ## Credits
 
-My tutor, Ashton Foston, gave me important guidance. My instructor, Poornima Sewak, rewrote the portion of my code regarding rendering the scores to the high score page to make it work properly.
+My tutor, Ashton Foston, gave me important guidance. My instructor, Poornima Sewak, rewrote the portion of my code regarding rendering the scores to the high score page to make it work properly. The entire reset.css file was provided in week 2 of class, and pasted from there.
 
 ## Technologies used
 
