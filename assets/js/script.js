@@ -1,5 +1,3 @@
-//TODO: figure out rendering problem
-
 var welcomePage = document.getElementById("welcome");
 var questionPage = document.getElementById("questions");
 var resultPage = document.getElementById("yourScore");
@@ -160,11 +158,16 @@ btnEl4.addEventListener("click", function() {
     checkAnswer.call(this);
 });
 
+var scoreBoard = JSON.parse(localStorage.getItem("initials")) || [];
+
 // Calls seeHighScores function on click
 addScoreBtn.addEventListener("click", function() {
-    var initials = initInpEl.value;
-    localStorage.setItem("initials", JSON.stringify(initials));
-    localStorage.setItem("score", JSON.stringify(score));
+    var newUser = {
+        initials : initInpEl.value,
+        score: score
+    }
+    scoreBoard.push(newUser);
+    localStorage.setItem("initials", JSON.stringify(scoreBoard));
     seeHighScores();
     initInpEl
 });
