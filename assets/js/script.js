@@ -1,4 +1,4 @@
-//TODO: figure out rendering problem, figure out how to clear scoreboard
+//TODO: figure out rendering problem
 
 var welcomePage = document.getElementById("welcome");
 var questionPage = document.getElementById("questions");
@@ -68,7 +68,7 @@ var questions = [
     },
     {
         question: "What gives a dynamic website its functionality?",
-        choices: ["HTML", "CSS", "Python", "The tears of frustrated developers"],
+        choices: ["HTML", "CSS", "Adobe Acrobat", "The tears of frustrated developers"],
         answer: "The tears of frustrated developers",
     },
 ];
@@ -133,7 +133,7 @@ function displayScore() {
     score = timeLeft;
     resultPage.setAttribute("style", "visibility: visible");
     questionPage.setAttribute("style", "display: none");
-    scorePageh2.textContent = "You scored " + score + " points! Would you like to add your initials and score to the high scores page?";
+    scorePageh2.textContent = "You scored " + score + " points! Enter your initials below to put your score on the leaderboard!";
 }
 
 //Moves user to new page containing high score board
@@ -166,4 +166,5 @@ addScoreBtn.addEventListener("click", function() {
     localStorage.setItem("initials", JSON.stringify(initials));
     localStorage.setItem("score", JSON.stringify(score));
     seeHighScores();
+    initInpEl
 });

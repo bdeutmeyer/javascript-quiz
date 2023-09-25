@@ -17,6 +17,7 @@ main {
 }
 #welcome,
 #questions,
+#yourScore,
 #scoreboard {
     display: flex;
     flex-direction: column;
@@ -49,6 +50,7 @@ h1, h2, h3 {
     margin: 5px;
 }
 
+#yourScore button,
 .score-buttons {
     background-color: #235659;
     color: white;
